@@ -1,22 +1,29 @@
 // Drop down function
+
+d3.selectAll("#selDataset").on("change", dropDownControl())
 function dropDownControl(){
   var dropDown = d3.select("#selDataset");
   var selection = dropDown.property("value");
-    d3.json("samples.json").then((name)=>{
-      var ids = name.names
-      console.log('jello')
-      console.log(ids)
-      d3.select('#selDataset')
-        .selectAll('myOptions')
-        .data(ids)
-        .enter()
-        .append("option")
-        .text(function(d) {return d})
-        .property("value", function (d) {return d})
+    
     userSelector(selection);
     demoSelector(selection);
-  });
+    
 }
+
+d3.json("samples.json").then((name)=>{
+  var ids = name.names
+  console.log('jello')
+  console.log(ids)
+  d3.select('#selDataset')
+    .selectAll('myOptions')
+    .data(ids)
+    .enter()
+    .append("option")
+    .text(function(d) {return d})
+    .property("value", function (d) {return d})
+});
+
+
 // Bar graph builder
 function userSelector(x){
     d3.json("samples.json").then((d)=>{
@@ -82,6 +89,6 @@ demoSelector(940);
 userSelector('940');
 
 //Call drop down selection
-dropDownControl();
+//dropDownControl();
 
 
